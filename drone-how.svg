@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" font-family="Arial Narrow, Arial, sans-serif">
+  <rect width="400" height="300" fill="#16171a"/>
+  <text x="20" y="34" fill="#f6f3ef" font-size="17" font-weight="700" letter-spacing="1">HOW IT WORKS</text>
+  <text x="20" y="52" fill="#d9c8b4" font-size="11">Landing to charging, fully automatic</text>
+  <g font-size="11" fill="#f6f3ef">
+    <g transform="translate(20,78)">
+      <circle cx="16" cy="16" r="15" fill="#73000a"/><text x="16" y="21" text-anchor="middle" font-weight="700" font-size="13">1</text>
+      <text x="42" y="13" font-weight="700" font-size="13">Drone lands</text><text x="42" y="28" fill="#bdb3a7">Touches down anywhere on the pad</text>
+    </g>
+    <g transform="translate(20,120)">
+      <circle cx="16" cy="16" r="15" fill="#73000a"/><text x="16" y="21" text-anchor="middle" font-weight="700" font-size="13">2</text>
+      <text x="42" y="13" font-weight="700" font-size="13">Landing detected</text><text x="42" y="28" fill="#bdb3a7">Velostat pressure mat confirms weight</text>
+    </g>
+    <g transform="translate(20,162)">
+      <circle cx="16" cy="16" r="15" fill="#73000a"/><text x="16" y="21" text-anchor="middle" font-weight="700" font-size="13">3</text>
+      <text x="42" y="13" font-weight="700" font-size="13">Bars close into corner</text><text x="42" y="28" fill="#bdb3a7">Two lead-screw bars push it diagonally</text>
+    </g>
+    <g transform="translate(20,204)">
+      <circle cx="16" cy="16" r="15" fill="#73000a"/><text x="16" y="21" text-anchor="middle" font-weight="700" font-size="13">4</text>
+      <text x="42" y="13" font-weight="700" font-size="13">Contacts engage</text><text x="42" y="28" fill="#bdb3a7">Pogo-pin legs meet copper pads</text>
+    </g>
+    <g transform="translate(20,246)">
+      <circle cx="16" cy="16" r="15" fill="#d9c8b4"/><text x="16" y="21" text-anchor="middle" font-weight="700" font-size="13" fill="#16171a">5</text>
+      <text x="42" y="13" font-weight="700" font-size="13">Charging begins</text><text x="42" y="28" fill="#bdb3a7">Battery charges through the TP4056</text>
+    </g>
+  </g>
+  <g stroke="#73000a" stroke-width="2" stroke-dasharray="3 4"><line x1="36" y1="110" x2="36" y2="120"/><line x1="36" y1="152" x2="36" y2="162"/><line x1="36" y1="194" x2="36" y2="204"/><line x1="36" y1="236" x2="36" y2="246"/></g>
+  <g transform="translate(290,120)" fill="none" stroke="#d9c8b4" stroke-width="1.5">
+    <ellipse cx="0" cy="0" rx="30" ry="5"/><ellipse cx="80" cy="0" rx="30" ry="5"/>
+    <line x1="0" y1="0" x2="25" y2="20"/><line x1="80" y1="0" x2="55" y2="20"/>
+    <rect x="22" y="16" width="36" height="16" rx="2"/>
+    <line x1="30" y1="32" x2="26" y2="54"/><line x1="50" y1="32" x2="54" y2="54"/>
+    <rect x="0" y="60" width="80" height="10" stroke="#b3263a"/>
+    <line x1="-10" y1="80" x2="90" y2="80" stroke="#b3263a" stroke-dasharray="3 4"/>
+  </g>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" font-family="Arial Narrow, Arial, sans-serif">
+  <rect width="400" height="300" fill="#16171a"/>
+  <text x="20" y="34" fill="#f6f3ef" font-size="17" font-weight="700" letter-spacing="1">CHARGING SYSTEM</text>
+  <text x="20" y="52" fill="#d9c8b4" font-size="11">Charges in any landing orientation, no extra sensors</text>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#b3263a"/></marker></defs>
+  <g font-size="12" text-anchor="middle">
+    <rect x="20" y="84" width="82" height="70" fill="#1f2124" stroke="#d9c8b4"/>
+    <text x="61" y="110" fill="#f6f3ef" font-weight="700">Leg</text><text x="61" y="125" fill="#f6f3ef" font-weight="700">contacts</text><text x="61" y="142" fill="#bdb3a7" font-size="9">pogo pins + pads</text>
+    <rect x="114" y="84" width="82" height="70" fill="#1f2124" stroke="#d9c8b4"/>
+    <text x="155" y="110" fill="#f6f3ef" font-weight="700">Bridge</text><text x="155" y="125" fill="#f6f3ef" font-weight="700">rectifier</text><text x="155" y="142" fill="#bdb3a7" font-size="9">fixes polarity</text>
+    <rect x="208" y="84" width="82" height="70" fill="#1f2124" stroke="#d9c8b4"/>
+    <text x="249" y="117" fill="#f6f3ef" font-weight="700">TP4056</text><text x="249" y="134" fill="#bdb3a7" font-size="9">charge module</text>
+    <rect x="302" y="84" width="78" height="70" fill="#73000a" stroke="#b3263a"/>
+    <text x="341" y="117" fill="#fff" font-weight="700">Battery</text><text x="341" y="134" fill="#f3dede" font-size="9">drone LiPo</text>
+  </g>
+  <g stroke="#b3263a" stroke-width="2" marker-end="url(#a)"><line x1="102" y1="119" x2="112" y2="119"/><line x1="196" y1="119" x2="206" y2="119"/><line x1="290" y1="119" x2="300" y2="119"/></g>
+  <!-- pad with 4 plates and two diagonal legs -->
+  <g transform="translate(120,180)">
+    <rect x="0" y="0" width="160" height="92" fill="none" stroke="#3a3c41"/>
+    <rect x="6" y="6" width="71" height="37" fill="#b87333" fill-opacity=".55"/><rect x="83" y="6" width="71" height="37" fill="#b87333" fill-opacity=".3"/>
+    <rect x="6" y="49" width="71" height="37" fill="#b87333" fill-opacity=".3"/><rect x="83" y="49" width="71" height="37" fill="#b87333" fill-opacity=".55"/>
+    <circle cx="42" cy="24" r="6" fill="#f6f3ef"/><circle cx="118" cy="68" r="6" fill="#f6f3ef"/>
+    <line x1="42" y1="24" x2="118" y2="68" stroke="#f6f3ef" stroke-dasharray="3 3"/>
+  </g>
+  <text x="20" y="200" fill="#bdb3a7" font-size="10">Diagonal leg pair</text><text x="20" y="214" fill="#bdb3a7" font-size="10">touches two isolated</text><text x="20" y="228" fill="#bdb3a7" font-size="10">copper plates</text>
+  <text x="290" y="200" fill="#bdb3a7" font-size="10">Either plate can</text><text x="290" y="214" fill="#bdb3a7" font-size="10">be + or −. The</text><text x="290" y="228" fill="#bdb3a7" font-size="10">rectifier sorts it out</text>
+</svg>

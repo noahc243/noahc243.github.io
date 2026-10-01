@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" font-family="Arial Narrow, Arial, sans-serif">
+  <rect width="400" height="300" fill="#16171a"/>
+  <text x="20" y="34" fill="#f6f3ef" font-size="17" font-weight="700" letter-spacing="1">POWER &amp; CONTROL</text>
+  <text x="20" y="52" fill="#d9c8b4" font-size="11">One 12V supply runs the whole station</text>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#b3263a"/></marker></defs>
+  <g text-anchor="middle" font-size="12">
+    <rect x="140" y="70" width="120" height="40" fill="#73000a" stroke="#b3263a"/>
+    <text x="200" y="95" fill="#fff" font-weight="700">12V power supply</text>
+    <rect x="130" y="140" width="140" height="48" fill="#1f2124" stroke="#d9c8b4"/>
+    <text x="200" y="161" fill="#f6f3ef" font-weight="700">Arduino Uno</text><text x="200" y="177" fill="#bdb3a7" font-size="10">+ CNC shield + drivers</text>
+    <rect x="20" y="226" width="110" height="48" fill="#1f2124" stroke="#d9c8b4"/>
+    <text x="75" y="247" fill="#f6f3ef" font-weight="700">2 NEMA 17 steppers</text><text x="75" y="263" fill="#bdb3a7" font-size="10">move the bars · 12V</text>
+    <rect x="145" y="226" width="110" height="48" fill="#1f2124" stroke="#d9c8b4"/>
+    <text x="200" y="247" fill="#f6f3ef" font-weight="700">Pressure mat</text><text x="200" y="263" fill="#bdb3a7" font-size="10">landing detection</text>
+    <rect x="270" y="226" width="110" height="48" fill="#1f2124" stroke="#d9c8b4"/>
+    <text x="325" y="247" fill="#f6f3ef" font-weight="700">Charging pad</text><text x="325" y="263" fill="#bdb3a7" font-size="10">4 copper plates</text>
+  </g>
+  <g stroke="#b3263a" stroke-width="2" fill="none" marker-end="url(#a)">
+    <line x1="200" y1="110" x2="200" y2="137"/>
+    <path d="M160 188 V206 H75 V223"/>
+    <line x1="200" y1="188" x2="200" y2="223"/>
+    <path d="M260 90 H325 V223"/>
+  </g>
+  <text x="290" y="84" fill="#bdb3a7" font-size="10">direct feed</text>
+  <text x="20" y="130" fill="#bdb3a7" font-size="10">Limit switches</text><text x="20" y="144" fill="#bdb3a7" font-size="10">home the bars</text>
+</svg>

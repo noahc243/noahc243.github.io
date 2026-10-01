@@ -214,17 +214,152 @@ footer .wrap { padding-block: 18px; display: flex; flex-wrap: wrap; justify-cont
   .proj { grid-template-columns: 1fr; }
 }
 </style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Graduate&family=Oswald:wght@400;500;600&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+/* G1 Varsity Classic: #7 palette (garnet, black, cream, tan) as a full site. Graduate + Oswald + Work Sans. Current layout. */
+html:root:not(#x) {
+  --bg: #f6f3ef; --panel: #ede7df; --ink: #1a1a1a; --ink-soft: #5e5750; --rule: #1a1a1a; --hair: #e2d9cf;
+  --accent: #73000a; --accent-ink: #ffffff; --nav: #73000a; --tan: #d9c8b4;
+  --sans: "Work Sans", "Helvetica Neue", Arial, sans-serif; --mono: "Oswald", "Arial Narrow", sans-serif; --display: "Graduate", Georgia, serif;
+  color-scheme: light;
+}
+.nav { border-bottom: 0; }
+.logo { font-family: var(--display); font-weight: 400; color: #fff; }
+.logo span { color: var(--tan); }
+.nav ul a { text-transform: uppercase; letter-spacing: .06em; color: #f3e6e6; font-weight: 500; }
+.nav ul a.nav-resume { background: #fff; color: var(--accent); padding: 2px 9px; }
+.hero { background: #1a1a1a; border-bottom: 6px solid var(--accent); }
+.hero::before { display: none; }
+.hero::after { content: "27"; position: absolute; left: 44%; bottom: -60px; font-family: var(--display); font-size: 17rem; line-height: 1; color: rgba(255,255,255,.05); pointer-events: none; }
+.hero h1 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: clamp(2.8rem, 7.5vw, 5rem); text-shadow: 4px 4px 0 var(--accent); position: relative; z-index: 1; max-width: 55%; }
+.hero .sub { text-transform: uppercase; letter-spacing: .12em; color: var(--tan); position: relative; z-index: 1; }
+.hero .sub b { color: var(--tan); }
+.hero-btn { background: var(--accent); border: 0; text-transform: uppercase; letter-spacing: .08em; padding: 11px 18px; position: relative; z-index: 1; }
+.hero-btn:hover { background: #9b1426; }
+.hero-photo { position: absolute; right: 0; top: 0; bottom: 0; width: 42%; border-left: 6px solid var(--accent); }
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+.chip { font-family: var(--display); font-weight: 400; letter-spacing: .04em; }
+section.block { border-bottom: 2px solid var(--hair); }
+#experience .mark, #clubs .mark, #education .mark { background: #1a1a1a; color: #fff; border: 2px solid var(--accent); }
+#experience .row-body > .row-head h3, #clubs .row-body > .row-head h3, .proj-head h3, .row-head h3 { font-family: var(--mono); font-weight: 600; text-transform: uppercase; letter-spacing: .03em; }
+.date { color: var(--accent); text-transform: uppercase; letter-spacing: .06em; }
+.slideshow { border: 4px solid var(--accent); }
+.tags span { background: var(--accent); color: #fff; border: 0; }
+.contact-row { font-family: var(--mono); font-size: 1.05rem; }
+footer { background: #1a1a1a; border-top: 6px solid var(--accent); color: var(--tan); }
+@media (max-width: 680px) {
+  .hero h1 { max-width: none; }
+  .hero-photo { width: 100%; opacity: .25; border-left: 0; }
+}
+</style>
+
+
+<style>
+/* Shared by M1-M5: one content width for every band so edges line up, and project cards with the picture at the bottom. */
+.wrap { max-width: 1100px; }
+.about { padding-left: 0; }
+.block .wrap { padding-block: 40px 44px; }
+
+/* Project cards: text on top, picture pinned to the bottom so both pictures line up */
+#projects .wrap > div:last-child { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; align-items: stretch; }
+#projects .proj { display: flex; flex-direction: column; gap: 14px; margin: 0; padding: 22px; background: #fff; border: 2px solid #1a1a1a; }
+#projects .proj:first-of-type { padding-top: 22px; }
+#projects .proj-body { order: 1; }
+#projects .proj-head { flex-direction: column; align-items: flex-start; gap: 2px; }
+#projects .proj > .thumb, #projects .proj > .slideshow { order: 2; margin-top: auto; width: 100%; aspect-ratio: 4 / 3; border: 4px solid var(--accent); }
+@media (max-width: 760px) {
+  #projects .wrap > div:last-child { grid-template-columns: 1fr; }
+}
+
+/* M1 Clean Flow: About | Education under the banner, then Experience, Projects cards, Organizations, Certifications, Contact. */
+.hero .wrap { min-height: 380px; }
+.m-intro { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); max-width: 1100px; margin: 0 auto; padding-inline: 20px; gap: 40px; border-bottom: 0; }
+.m-intro > section.block { border-bottom: 0; }
+.m-intro .wrap { max-width: none; padding-inline: 0; }
+.m-intro > #education .wrap { background: var(--panel); padding: 24px; margin-block: 40px; border-top: 4px solid var(--accent); }
+.m-intro + section.block { border-top: 2px solid var(--hair); }
+@media (max-width: 860px) { .m-intro { grid-template-columns: 1fr; gap: 0; } .m-intro > #education .wrap { margin-top: 0; } }
+</style>
+<style>
+/* Narrow sidebars: let contact values wrap onto their own line */
+.m2-side .contact-row, .m3-side .contact-row, .m4-side .contact-row { flex-wrap: wrap; row-gap: 2px; }
+.m2-side .contact-row .val, .m3-side .contact-row .val, .m4-side .contact-row .val { order: 3; flex-basis: 100%; margin-left: 0; font-size: .85rem; }
+.m2-side .contact-row .arr, .m3-side .contact-row .arr, .m4-side .contact-row .arr { margin-left: auto; }
+</style>
+<style>
+/* M1 refinements: level About/Education intro with highlight boxes, black Organizations band */
+.m-intro { align-items: start; }
+.m-intro > #education .wrap { background: none; padding: 40px 0 44px; margin: 0; border: 0; }
+.m-intro #education .row { background: var(--panel); border-top: 4px solid var(--accent); padding: 22px; }
+.m1-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.m1-facts div { background: #fff; border: 2px solid #1a1a1a; padding: 14px 16px; display: grid; gap: 2px; }
+.m1-facts b { font-family: var(--display); font-weight: 400; font-size: 1.7rem; color: var(--accent); line-height: 1.1; }
+.m1-facts span { font-family: var(--mono); font-size: .74rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-soft); line-height: 1.3; }
+#clubs { background: #1a1a1a; color: #f6f3ef; border-bottom: 0; }
+#clubs .row { border-bottom-color: #333; }
+#clubs .row-head h3, #clubs .job-title { color: #fff; }
+#clubs .org, #clubs .date { color: var(--tan); }
+#clubs ul.dash li::before { color: var(--tan); }
+#clubs .mark { background: #1a1a1a !important; border: 2px solid var(--tan) !important; }
+#clubs .slideshow { border: 4px solid var(--accent); }
+</style><style>
+/* Intern role: diagrams slideshow to the right of the bullets */
+.role-media { grid-template-columns: minmax(0, 1fr) 320px; gap: 24px; }
+.role-media .slideshow { border: 4px solid var(--accent); aspect-ratio: 4 / 3; }
+@media (max-width: 760px) { .role-media { grid-template-columns: 1fr; } .role-media .slideshow { max-width: 420px; } }
+</style>
+<style>
+/* Banner headshot */
+.hero-photo { width: 28%; }
+.hero-photo img { object-position: 50% 30%; }
+.hero h1 { max-width: 62%; }
+@media (max-width: 680px) { .hero-photo { width: 100%; opacity: .3; } .hero h1 { max-width: none; } }
+</style>
+<style>
+/* Photo under Education */
+.m1-photo { margin: 0; border: 2px solid #1a1a1a; box-shadow: 6px 6px 0 var(--accent); background: #1a1a1a; }
+.m1-photo img { display: block; width: 100%; height: auto; }
+@media (max-width: 860px) { .m1-photo { max-width: 360px; } }
+</style>
+<style>
+/* Intro v2: About + Education stacked on the left, full photo on the right */
+.m-intro.m-intro-2 { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); align-items: end; padding-bottom: 44px; }
+.m-left #about .wrap { padding-bottom: 26px; }
+.m-left #education .wrap { padding: 0 !important; margin: 0 !important; }
+.m-intro-2 .m1-photo { margin: 40px 0 0; }
+@media (max-width: 860px) { .m-intro.m-intro-2 { grid-template-columns: 1fr; } .m-intro-2 .m1-photo { margin-top: 28px; max-width: 420px; } }
+</style><style>
+/* Intro v3: About left; Education card then photo on the right, photo fills to the bottom of About */
+.m-intro.m-intro-2 { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: stretch; padding-bottom: 44px; }
+.m-left #about .wrap { padding-bottom: 0; }
+.m-right { display: flex; flex-direction: column; gap: 20px; padding-top: 40px; min-width: 0; }
+.m-right #education .wrap { padding: 0 !important; margin: 0 !important; }
+.m-right .m1-photo { flex: 1; margin: 0; min-height: 220px; position: relative; overflow: hidden; }
+.m-right .m1-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+@media (max-width: 860px) {
+  .m-intro.m-intro-2 { grid-template-columns: 1fr; }
+  .m-right .m1-photo { flex: none; aspect-ratio: 4 / 3; max-width: 460px; }
+}
+</style><style>
+/* About text in an outlined card */
+.m-left #about .about { max-width: none; background: transparent; border: 2px solid #1a1a1a; box-shadow: 6px 6px 0 var(--accent); padding: 24px 28px; }
+@media (max-width: 680px) { .m-left #about .about { padding: 18px 18px; } }
+</style>
+<style>
+/* Slightly stronger dividers between experience entries */
+#experience .row { border-bottom: 2px solid #cdbfab; }
+#experience .row:last-child { border-bottom: 0; }
+</style>
+
 </head>
 <body>
-
-
 <nav class="nav" aria-label="Sections">
   <div class="wrap">
     <a class="logo" href="#top">noah<span>.</span>carter</a>
     <ul>
       <li><a href="#about">about</a></li>
-      <li><a href="#experience">experience</a></li>
       <li><a href="#education">education</a></li>
+      <li><a href="#experience">experience</a></li>
       <li><a href="#projects">projects</a></li>
       <li><a href="#clubs">organizations</a></li>
       <li><a href="#certifications">certifications</a></li>
@@ -236,40 +371,15 @@ footer .wrap { padding-block: 18px; display: flex; flex-wrap: wrap; justify-cont
 
 <header class="hero" id="top">
   <!-- Line drawing of the drone charging station -->
-  <svg class="hero-art" viewBox="0 0 600 360" fill="none" aria-hidden="true">
-    <g stroke="rgba(255,255,255,.55)" stroke-width="1.5">
-      <!-- drone body -->
-      <rect x="240" y="120" width="120" height="34" rx="4"/>
-      <line x1="240" y1="137" x2="150" y2="110"/><line x1="360" y1="137" x2="450" y2="110"/>
-      <ellipse cx="150" cy="104" rx="62" ry="7"/><ellipse cx="450" cy="104" rx="62" ry="7"/>
-      <line x1="150" y1="104" x2="150" y2="112"/><line x1="450" y1="104" x2="450" y2="112"/>
-      <!-- pogo legs -->
-      <line x1="262" y1="154" x2="252" y2="208"/><line x1="338" y1="154" x2="348" y2="208"/>
-      <circle cx="252" cy="211" r="3"/><circle cx="348" cy="211" r="3"/>
-    </g>
-    <g stroke="#e06a79" stroke-width="1.5">
-      <!-- pad -->
-      <rect x="150" y="226" width="300" height="20"/>
-      <line x1="225" y1="226" x2="225" y2="246"/><line x1="300" y1="226" x2="300" y2="246"/><line x1="375" y1="226" x2="375" y2="246"/>
-      <!-- lead screws -->
-      <line x1="90" y1="266" x2="510" y2="266" stroke-dasharray="3 5"/>
-      <line x1="150" y1="246" x2="150" y2="266"/><line x1="450" y1="246" x2="450" y2="266"/>
-    </g>
-    <g stroke="rgba(255,255,255,.35)" stroke-width="1">
-      <line x1="150" y1="300" x2="450" y2="300"/>
-      <line x1="150" y1="292" x2="150" y2="308"/><line x1="450" y1="292" x2="450" y2="308"/>
-    </g>
-    <text x="300" y="322" fill="rgba(255,255,255,.5)" font-family="JetBrains Mono, monospace" font-size="11" text-anchor="middle">4-PLATE COPPER PAD · 2-MOTOR LEAD SCREW</text>
-  </svg>
+  <div class="hero-photo"><img src="noah-cover.webp" alt="Noah Carter at the Clemson CU-ICAR composites event"></div>
   <div class="wrap">
     <h1>Noah Carter</h1>
     <p class="sub"><b>&gt;</b>Mechanical Engineer · UofSC ’27</p>
     <a class="hero-btn" href="#resume" data-resume>View resume ↗</a>
   </div>
 </header>
-
 <main>
-  <section class="block" id="about">
+<div class="m-intro m-intro-2"><div class="m-left"><section class="block" id="about">
     <div class="wrap">
       <span class="chip">About</span>
       <div class="about">
@@ -279,9 +389,25 @@ footer .wrap { padding-block: 18px; display: flex; flex-wrap: wrap; justify-cont
         <p>I’m looking for mechanical engineering internships and co-op opportunities.</p>
       </div>
     </div>
-  </section>
-
-  <section class="block" id="experience">
+  </section></div><div class="m-right"><section class="block" id="education">
+    <div class="wrap">
+      <span class="chip">Education</span>
+      <div>
+        <div class="row">
+          <span class="mark" aria-hidden="true">UofSC</span>
+          <div class="row-body">
+            <div class="row-head">
+              <h3>B.S. Mechanical Engineering</h3>
+              <span class="date">Expected Dec 2027</span>
+            </div>
+            <span class="org">University of South Carolina — Columbia, SC</span>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+  </section><figure class="m1-photo"><img src="sampe-conference.jpg" alt="Noah Carter with colleagues at the Correlated Solutions booth, booth F41"></figure></div></div>
+<section class="block" id="experience">
     <div class="wrap">
       <span class="chip">Experience</span>
       <div>
@@ -300,6 +426,7 @@ footer .wrap { padding-block: 18px; display: flex; flex-wrap: wrap; justify-cont
                   <h4>Intern</h4>
                   <span class="date">Aug 2026 – Present</span>
                 </div>
+                <div class="text-media role-media">
                 <ul class="dash">
                   <li>Redesigned the self-centering docking mechanism from a 4-motor to a 2-motor lead-screw system, cutting motor count 50% while maintaining alignment tolerance.</li>
                   <li>Engineered a contact-based charging system (pogo-pin drone legs, 4-plate copper pad, bridge rectifier) that resolves charging polarity across any landing orientation without added sensors.</li>
@@ -307,6 +434,17 @@ footer .wrap { padding-block: 18px; display: flex; flex-wrap: wrap; justify-cont
                   <li>Manage a team of 3 fellows as Project Manager, running design reviews and weekly check-ins to keep the project on a 10-week schedule.</li>
                   <li>Currently broadening CAD skills by self-teaching CATIA V5 through <em>CATIA V5 for Designers</em>, 15th Edition.</li>
                 </ul>
+                <div class="slideshow" aria-roledescription="carousel" aria-label="Drone docking station diagrams" data-title="Drone Docking Station">
+                  <div class="slides">
+                    <img class="on fit" src="drone-how.svg" alt="How the docking station works, from landing to charging">
+                    <img class="fit" src="drone-centering.svg" alt="Top view of the two-bar centering mechanism" loading="lazy">
+                    <img class="fit" src="drone-charging.svg" alt="Charging system: leg contacts, bridge rectifier, TP4056, battery" loading="lazy">
+                    <img class="fit" src="drone-power.svg" alt="Power and control layout from one 12V supply" loading="lazy">
+                  </div>
+                  <button class="ss-btn prev" type="button" aria-label="Previous diagram">‹</button>
+                  <button class="ss-btn next" type="button" aria-label="Next diagram">›</button>
+                  <div class="ss-dots"></div>
+                </div>              </div>
               </div>
               <div class="role">
                 <div class="row-head">
@@ -332,12 +470,27 @@ footer .wrap { padding-block: 18px; display: flex; flex-wrap: wrap; justify-cont
               <span class="date">May 2026 – Aug 2026</span>
             </div>
             <p class="job-title">Mechanical Engineering Intern <span class="org">· Spartanburg, SC</span></p>
+            <div class="text-media role-media">
             <ul class="dash">
               <li>Conducted 10+ field site visits across 2 industrial/commercial HVAC projects, coordinating with project managers to resolve field issues and keep installs on schedule.</li>
               <li>Reviewed a $134,500 mechanical subcontract, flagging 3 contract risk clauses before execution to protect project terms.</li>
               <li>Resolved a field discrepancy on a wall-diffuser installation against submittal specs after holes were pre-cut, confirming correct equipment to prevent rework.</li>
               <li>Diagnosed an oversized offset using laser-measured reference points off each wall and the ceiling, then calculated the exact cut length in SolidWorks to give the fabrication shop a corrected dimension.</li>
             </ul>
+            <div class="slideshow" aria-roledescription="carousel" aria-label="Piedmont Mechanical jobsite photos" data-title="Piedmont Mechanical">
+                  <div class="slides">
+                    <img class="on" src="piedmont-1.jpg" alt="Insulated supply ductwork running along a wall above a mezzanine">
+                    <img src="piedmont-2.jpg" alt="Round ceiling air diffuser checked on site" loading="lazy">
+                    <img src="piedmont-3.jpg" alt="Crane lift on the jobsite" loading="lazy">
+                    <img src="piedmont-4.jpg" alt="Overhead view of insulated ductwork branches above a drop ceiling" loading="lazy">
+                    <img src="piedmont-5.jpg" alt="Inside an air handler, looking at the coil" loading="lazy">
+                    <img src="piedmont-6.jpg" alt="Insulated ductwork mains and branch runs at the ceiling" loading="lazy">
+                  </div>
+                  <button class="ss-btn prev" type="button" aria-label="Previous photo">‹</button>
+                  <button class="ss-btn next" type="button" aria-label="Next photo">›</button>
+                  <div class="ss-dots"></div>
+                </div>
+            </div>
           </div>
         </div>
 
@@ -357,42 +510,7 @@ footer .wrap { padding-block: 18px; display: flex; flex-wrap: wrap; justify-cont
         </div>
       </div>
     </div>
-  </section>
-
-
-
-  <section class="block" id="education">
-    <div class="wrap">
-      <span class="chip">Education</span>
-      <div>
-        <div class="row">
-          <span class="mark" aria-hidden="true">UofSC</span>
-          <div class="row-body">
-            <div class="row-head">
-              <h3>B.S. Mechanical Engineering</h3>
-              <span class="date">Expected Dec 2027</span>
-            </div>
-            <span class="org">University of South Carolina, School of Engineering &amp; Computing — Columbia, SC</span>
-            <p class="meta-line"><b>GPA:</b> 3.4 / 4.00</p>
-          </div>
-        </div>
-        <div class="row">
-          <span class="mark" aria-hidden="true">UPST</span>
-          <div class="row-body">
-            <div class="row-head">
-              <h3>Dual Enrollment Credit</h3>
-              <span class="date">Aug 2021 – May 2025</span>
-            </div>
-            <span class="org">University of South Carolina Upstate — Spartanburg, SC</span>
-            <p class="meta-line"><b>GPA:</b> 3.5 / 4.00</p>
-            <p class="meta-line">Accumulated 84 college credits during high school.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" id="projects">
+  </section><section class="block" id="projects">
     <div class="wrap">
       <span class="chip">Projects</span>
       <div>
@@ -455,9 +573,7 @@ footer .wrap { padding-block: 18px; display: flex; flex-wrap: wrap; justify-cont
         </article>
       </div>
     </div>
-  </section>
-
-  <section class="block" id="clubs">
+  </section><section class="block" id="clubs">
     <div class="wrap">
       <span class="chip">Student Organizations</span>
       <div>
@@ -494,7 +610,6 @@ footer .wrap { padding-block: 18px; display: flex; flex-wrap: wrap; justify-cont
               <div class="slides">
                 <img class="on" src="sampe-chapter.jpg" alt="UofSC SAMPE student chapter with banner outside Swearingen Engineering Center">
                 <img src="sampe-steps.jpg" alt="SAMPE members on the steps of the Molinaroli College of Engineering and Computing" loading="lazy">
-                <img src="sampe-steps-2.jpg" alt="SAMPE members on the engineering building steps" loading="lazy">
                 <img src="sampe-menzel.jpg" alt="SAMPE chapter with banner outside the Menzel building" loading="lazy">
                 <img class="fit" src="sampe-conference.jpg" alt="Noah at the Correlated Solutions booth at a conference" loading="lazy">
               </div>
@@ -507,9 +622,7 @@ footer .wrap { padding-block: 18px; display: flex; flex-wrap: wrap; justify-cont
         </div>
       </div>
     </div>
-  </section>
-
-  <section class="block" id="certifications">
+  </section><section class="block" id="certifications">
     <div class="wrap">
       <span class="chip">Certifications</span>
       <div class="certs">
@@ -556,9 +669,7 @@ footer .wrap { padding-block: 18px; display: flex; flex-wrap: wrap; justify-cont
         </article>
       </div>
     </div>
-  </section>
-
-  <section class="block" id="contact">
+  </section><section class="block" id="contact">
     <div class="wrap">
       <span class="chip">Contact</span>
       <div class="contact">
