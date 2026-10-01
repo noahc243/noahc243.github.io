@@ -55,7 +55,8 @@ h1, h2, h3, p { margin: 0; }
 .nav .wrap { display: flex; align-items: center; gap: 20px; height: 52px; }
 .logo { font-family: var(--mono); font-weight: 700; font-size: 0.95rem; text-decoration: none; white-space: nowrap; }
 .logo span { color: #e06a79; }
-.nav ul { list-style: none; margin: 0 0 0 auto; padding: 0; display: flex; gap: 20px; overflow-x: auto; }
+.nav ul { list-style: none; margin: 0 0 0 auto; padding: 0; display: flex; gap: 20px; overflow-x: auto; scrollbar-width: none; }
+.nav ul::-webkit-scrollbar { display: none; }
 .nav ul a { font-family: var(--mono); font-size: 0.82rem; text-decoration: none; color: #d9d9d9; white-space: nowrap; }
 .nav ul a:hover { color: #fff; text-decoration: underline; text-underline-offset: 4px; }
 
@@ -82,11 +83,45 @@ h1, h2, h3, p { margin: 0; }
 .hero-btn { justify-self: start; align-self: flex-start; margin-top: 8px; font-family: var(--mono); font-size: 0.82rem; font-weight: 700; color: #fff; text-decoration: none; background: #9b1426; border: 1px solid #e06a79; padding: 8px 14px; }
 .hero-btn:hover { background: #b51a2e; }
 .viewer { position: fixed; inset: 0; z-index: 50; background: rgba(10,10,12,.85); display: flex; flex-direction: column; padding-top: env(safe-area-inset-top, 0px); }
+.viewer[hidden] { display: none; }
 .viewer-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 16px; background: #17181b; color: #f2f2f2; font-family: var(--mono); font-size: 0.85rem; border-bottom: 2px solid #9b1426; }
 .viewer-bar button { font: inherit; font-weight: 700; color: #fff; background: #9b1426; border: 0; padding: 6px 12px; cursor: pointer; }
 .viewer-pages { flex: 1; overflow: auto; display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 16px; }
 .viewer-pages canvas { max-width: 100%; height: auto; background: #fff; box-shadow: 0 4px 24px rgba(0,0,0,.4); }
 .viewer-msg { color: #e8e8e8; font-family: var(--mono); margin-top: 40px; }
+.viewer-pages img { max-width: min(100%, 1100px); height: auto; background: #fff; box-shadow: 0 4px 24px rgba(0,0,0,.4); }
+
+/* Photo slideshows */
+.slideshow { position: relative; aspect-ratio: 4 / 3; max-width: 100%; background: #16171a; border: 1px solid var(--hair); overflow: hidden; align-self: start; }
+.slideshow.wide { aspect-ratio: 3 / 2; }
+.text-media { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 24px; align-items: start; }
+@media (max-width: 760px) { .text-media { grid-template-columns: 1fr; } .text-media .slideshow { max-width: 420px; } }
+.slides { position: absolute; inset: 0; cursor: zoom-in; }
+.slides img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .6s ease; }
+.slides img.fit { object-fit: contain; }
+.slides img.on { opacity: 1; }
+.ss-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; border: 0; border-radius: 50%; background: rgba(0,0,0,.55); color: #fff; font-size: 1.3rem; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0 0 3px; }
+.ss-btn:hover { background: #9b1426; }
+.ss-btn.prev { left: 8px; } .ss-btn.next { right: 8px; }
+.ss-dots { position: absolute; left: 0; right: 0; bottom: 8px; display: flex; justify-content: center; gap: 6px; }
+.ss-dots button { width: 8px; height: 8px; border-radius: 50%; border: 0; padding: 0; background: rgba(255,255,255,.5); cursor: pointer; }
+.ss-dots button[aria-current="true"] { background: #fff; }
+@media (prefers-reduced-motion: reduce) { .slides img { transition: none; } }
+
+/* Certifications */
+.certs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.cert { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.cert-img { display: block; padding: 0; border: 1px solid var(--hair); background: #fff; cursor: zoom-in; aspect-ratio: 4 / 3; width: 100%; max-width: 100%; overflow: hidden; }
+.cert-img img { width: 100%; height: 100%; object-fit: contain; display: block; transition: transform .2s; }
+.cert-img:hover img { transform: scale(1.03); }
+.cert-body { display: grid; gap: 2px; }
+.cert-body h3 { font-size: 0.88rem; font-weight: 700; margin: 0; line-height: 1.3; }
+.cert-body .org { font-size: 0.72rem; }
+.cert-body .date { white-space: normal; font-size: 0.7rem; }
+.cert-link { font-family: var(--mono); font-size: 0.7rem; font-weight: 700; color: var(--accent); text-decoration: none; margin-top: 4px; justify-self: start; }
+.cert-link:hover { text-decoration: underline; }
+@media (max-width: 680px) { .certs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (prefers-reduced-motion: reduce) { .cert-img img { transition: none; } }
 .nav ul a.nav-resume { color: #e06a79; }
 .hero .sub b { color: #e06a79; font-weight: 700; margin-right: 6px; }
 
@@ -134,9 +169,9 @@ ul.dash li::before { content: "–"; position: absolute; left: 0; color: var(--a
 .tenure { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-soft); }
 
 /* Experience: company name leads each entry */
-#experience .row, #extracurriculars .row, #education .row { grid-template-columns: 40px 1fr; gap: 16px; }
-#experience .mark, #extracurriculars .mark, #education .mark { width: 40px; height: 40px; font-size: 0.64rem; background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
-#experience .row-body > .row-head h3, #extracurriculars .row-body > .row-head h3 { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.01em; line-height: 1.25; }
+#experience .row, #clubs .row, #education .row { grid-template-columns: 40px 1fr; gap: 16px; }
+#experience .mark, #clubs .mark, #education .mark { width: 40px; height: 40px; font-size: 0.64rem; background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+#experience .row-body > .row-head h3, #clubs .row-body > .row-head h3 { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.01em; line-height: 1.25; }
 .job-title { font-weight: 700; font-size: 1rem; }
 .job-title .org { font-weight: 400; }
 
@@ -189,9 +224,10 @@ footer .wrap { padding-block: 18px; display: flex; flex-wrap: wrap; justify-cont
     <ul>
       <li><a href="#about">about</a></li>
       <li><a href="#experience">experience</a></li>
-      <li><a href="#extracurriculars">activities</a></li>
       <li><a href="#education">education</a></li>
       <li><a href="#projects">projects</a></li>
+      <li><a href="#clubs">organizations</a></li>
+      <li><a href="#certifications">certifications</a></li>
       <li><a href="#contact">contact</a></li>
       <li><a class="nav-resume" href="#resume" data-resume>resume ↗</a></li>
     </ul>
@@ -237,10 +273,10 @@ footer .wrap { padding-block: 18px; display: flex; flex-wrap: wrap; justify-cont
     <div class="wrap">
       <span class="chip">About</span>
       <div class="about">
-        <p>Hey, I’m Noah Carter, a mechanical engineering student at the University of South Carolina, graduating December 2027.</p>
-        <p>I like building hardware that works. Right now I’m leading a small team at the Center for Industry Solutions on a drone docking and charging station, and I’m on the SAMPE team designing carbon fiber I-beams for the 2026 bridge competition. This summer I was in the field with Piedmont Mechanical on commercial HVAC projects.</p>
-        <p>Outside of school and work I’m usually making something. I spend a lot of time on my 3D printer designing and printing my own parts, and I like building LEGO sets and working on woodworking projects.</p>
-        <p>I’m looking for mechanical engineering internship and co-op opportunities.</p>
+        <p>Hey, I’m Noah Carter, a mechanical engineering student at the University of South Carolina, graduating in December 2027.</p>
+        <p>Right now I’m an intern at the Center for Industry Solutions, where I’m designing and building my own drone docking and charging station. I also serve as project manager for a team of three fellows, leading them through their project. Outside of work, I’m a member of UofSC’s SAMPE student chapter and the Carolina Sales Institute for Engineering and Technology. This summer I worked in the field with Piedmont Mechanical on commercial HVAC projects.</p>
+        <p>Outside of school and work, I’m usually making something or outdoors. I love hunting and fishing. I spend a lot of time designing and printing my own parts on my 3D printer, and I like building things with my hands, whether it’s LEGO or a new woodworking project.</p>
+        <p>I’m looking for mechanical engineering internships and co-op opportunities.</p>
       </div>
     </div>
   </section>
@@ -269,6 +305,7 @@ footer .wrap { padding-block: 18px; display: flex; flex-wrap: wrap; justify-cont
                   <li>Engineered a contact-based charging system (pogo-pin drone legs, 4-plate copper pad, bridge rectifier) that resolves charging polarity across any landing orientation without added sensors.</li>
                   <li>Built and programmed an Arduino Uno state machine to coordinate landing detection, alignment, and charging across dual stepper motors and a pressure-sensor trigger, sourcing the full charging station prototype with a $300 budget.</li>
                   <li>Manage a team of 3 fellows as Project Manager, running design reviews and weekly check-ins to keep the project on a 10-week schedule.</li>
+                  <li>Currently broadening CAD skills by self-teaching CATIA V5 through <em>CATIA V5 for Designers</em>, 15th Edition.</li>
                 </ul>
               </div>
               <div class="role">
@@ -322,43 +359,7 @@ footer .wrap { padding-block: 18px; display: flex; flex-wrap: wrap; justify-cont
     </div>
   </section>
 
-  <section class="block" id="extracurriculars">
-    <div class="wrap">
-      <span class="chip">Extracurriculars</span>
-      <div>
-        <div class="row">
-          <span class="mark" aria-hidden="true">CSI</span>
-          <div class="row-body">
-            <div class="row-head">
-              <h3>Carolina Sales Institute for Engineering &amp; Technology</h3>
-              <span class="date">Aug 2025 – Present</span>
-            </div>
-            <span class="org">Columbia, SC</span>
-            <ul class="dash">
-              <li>P.A.T.H. Course Certification, a 12-week live, interactive training program designed to equip aspiring professionals with the technical, business, and customer-facing skills necessary to succeed as a sales engineer.</li>
-              <li>Competed in Nucor Sales Pitch competition selling to sales managers in Nucor.</li>
-              <li>Placed 1st at the Microsoft Sales Competition.</li>
-            </ul>
-          </div>
-        </div>
 
-        <div class="row">
-          <span class="mark" aria-hidden="true">SAMPE</span>
-          <div class="row-body">
-            <div class="row-head">
-              <h3>SAMPE</h3>
-              <span class="date">Jan 2026 – Present</span>
-            </div>
-            <p class="job-title">Bridge Design Team &amp; Social Media Outreach Lead <span class="org">· Columbia, SC</span></p>
-            <ul class="dash">
-              <li>Designing and manufacturing carbon fiber epoxy reinforced I-beams for SAMPE 2026 student bridge design competition, optimized for minimal weight while targeting load bearing capacities of 7200 lb.</li>
-              <li>Serve as social media outreach lead, growing visibility for the SAMPE 2026 bridge design competition team.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section class="block" id="education">
     <div class="wrap">
@@ -428,22 +429,17 @@ footer .wrap { padding-block: 18px; display: flex; flex-wrap: wrap; justify-cont
         </article>
 
         <article class="proj">
-          <div class="thumb">
-            <svg viewBox="0 0 250 188" role="img" aria-label="I-beam cross-section under a 7,200 lb load">
-              <rect width="250" height="188" fill="#16171a"/>
-              <g stroke="#cfd0d3" stroke-width="1.3" fill="none">
-                <path d="M85 60 H165 V72 H131 V128 H165 V140 H85 V128 H119 V72 H85 Z"/>
-              </g>
-              <g stroke="#cfd0d3" stroke-width="0.6" opacity=".45">
-                <line x1="88" y1="63" x2="97" y2="72"/><line x1="100" y1="61" x2="111" y2="72"/><line x1="114" y1="61" x2="125" y2="72"/><line x1="128" y1="61" x2="139" y2="72"/><line x1="142" y1="61" x2="153" y2="72"/><line x1="156" y1="61" x2="164" y2="69"/>
-                <line x1="88" y1="131" x2="97" y2="140"/><line x1="100" y1="129" x2="111" y2="140"/><line x1="114" y1="129" x2="125" y2="140"/><line x1="128" y1="129" x2="139" y2="140"/><line x1="142" y1="129" x2="153" y2="140"/><line x1="156" y1="129" x2="164" y2="137"/>
-              </g>
-              <g stroke="#e06a79" stroke-width="1.5" fill="none">
-                <line x1="125" y1="18" x2="125" y2="52"/><path d="M119 44 L125 52 L131 44"/>
-              </g>
-              <text x="134" y="30" fill="#e06a79">7,200 LB</text>
-              <text x="125" y="164" text-anchor="middle">CFRP / EPOXY I-BEAM</text>
-            </svg>
+          <div class="slideshow" aria-roledescription="carousel" aria-label="Composite I-beam photos" data-title="Composite I-Beam">
+            <div class="slides">
+              <img class="on" src="ibeam-beams.jpg" alt="Finished carbon fiber I-beams on a workbench">
+              <img src="ibeam-autoclave.jpg" alt="Open autoclave with a part loaded inside" loading="lazy">
+              <img src="ibeam-tested.jpg" alt="Carbon fiber beam section held up in the lab" loading="lazy">
+              <img src="ibeam-shop.jpg" alt="Team working on steel tubing at a shop bench" loading="lazy">
+              <img src="ibeam-mill.jpg" alt="Steel tube clamped on a Sharp milling machine" loading="lazy">
+            </div>
+            <button class="ss-btn prev" type="button" aria-label="Previous photo">‹</button>
+            <button class="ss-btn next" type="button" aria-label="Next photo">›</button>
+            <div class="ss-dots"></div>
           </div>
           <div class="proj-body">
             <div class="proj-head">
@@ -455,6 +451,107 @@ footer .wrap { padding-block: 18px; display: flex; flex-wrap: wrap; justify-cont
               <li>Optimized for minimal weight while targeting a load bearing capacity of 7,200 lb.</li>
             </ul>
             <div class="tags"><span>Composites</span><span>Carbon fiber</span><span>Epoxy</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="clubs">
+    <div class="wrap">
+      <span class="chip">Student Organizations</span>
+      <div>
+        <div class="row">
+          <span class="mark" aria-hidden="true">CSI</span>
+          <div class="row-body">
+            <div class="row-head">
+              <h3>Carolina Sales Institute for Engineering &amp; Technology</h3>
+              <span class="date">Aug 2025 – Present</span>
+            </div>
+            <span class="org">Columbia, SC</span>
+            <ul class="dash">
+              <li>P.A.T.H. Course Certification, a 12-week live, interactive training program designed to equip aspiring professionals with the technical, business, and customer-facing skills necessary to succeed as a sales engineer.</li>
+              <li>Competed in Nucor Sales Pitch competition selling to sales managers in Nucor.</li>
+              <li>Placed 1st at the Microsoft Sales Competition.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <span class="mark" aria-hidden="true">SAMPE</span>
+          <div class="row-body">
+            <div class="row-head">
+              <h3>SAMPE</h3>
+              <span class="date">Jan 2026 – Present</span>
+            </div>
+            <p class="job-title">Bridge Design Team &amp; Social Media Outreach Lead <span class="org">· Columbia, SC</span></p>
+            <div class="text-media">
+            <ul class="dash">
+              <li>Designing and manufacturing carbon fiber epoxy reinforced I-beams for SAMPE 2026 student bridge design competition, optimized for minimal weight while targeting load bearing capacities of 7200 lb.</li>
+              <li>Serve as social media outreach lead, growing visibility for the SAMPE 2026 bridge design competition team.</li>
+            </ul>
+            <div class="slideshow wide" aria-roledescription="carousel" aria-label="SAMPE photos" data-title="SAMPE Student Chapter">
+              <div class="slides">
+                <img class="on" src="sampe-chapter.jpg" alt="UofSC SAMPE student chapter with banner outside Swearingen Engineering Center">
+                <img src="sampe-steps.jpg" alt="SAMPE members on the steps of the Molinaroli College of Engineering and Computing" loading="lazy">
+                <img src="sampe-steps-2.jpg" alt="SAMPE members on the engineering building steps" loading="lazy">
+                <img src="sampe-menzel.jpg" alt="SAMPE chapter with banner outside the Menzel building" loading="lazy">
+                <img class="fit" src="sampe-conference.jpg" alt="Noah at the Correlated Solutions booth at a conference" loading="lazy">
+              </div>
+              <button class="ss-btn prev" type="button" aria-label="Previous photo">‹</button>
+              <button class="ss-btn next" type="button" aria-label="Next photo">›</button>
+              <div class="ss-dots"></div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="certifications">
+    <div class="wrap">
+      <span class="chip">Certifications</span>
+      <div class="certs">
+        <article class="cert">
+          <button class="cert-img" type="button" data-cert="procore-engineer.jpg" aria-label="View Procore Certified: Engineer certificate">
+            <img src="procore-engineer.jpg" alt="Procore Certified: Engineer certificate" loading="lazy">
+          </button>
+          <div class="cert-body">
+            <h3>Procore Certified: Engineer</h3>
+            <span class="org">Procore Technologies</span>
+            <span class="date">Issued Jun 2026</span>
+            <a class="cert-link" href="https://verify.skilljar.com/c/yuedyqh7dccw" target="_blank" rel="noopener">Verify credential ↗</a>
+          </div>
+        </article>
+        <article class="cert">
+          <button class="cert-img" type="button" data-cert="path-sales-engineering.jpg" aria-label="View Sales Engineering Certification certificate">
+            <img src="path-sales-engineering.jpg" alt="PATH Sales Engineering certificate" loading="lazy">
+          </button>
+          <div class="cert-body">
+            <h3>Sales Engineering Certification</h3>
+            <span class="org">Presales Advancement and Training Hub (PATH)</span>
+            <span class="date">Issued May 2025</span>
+          </div>
+        </article>
+        <article class="cert">
+          <button class="cert-img" type="button" data-cert="nvidia-deep-learning.jpg" aria-label="View Getting Started with Deep Learning certificate">
+            <img src="nvidia-deep-learning.jpg" alt="NVIDIA Getting Started with Deep Learning certificate" loading="lazy">
+          </button>
+          <div class="cert-body">
+            <h3>Getting Started with Deep Learning</h3>
+            <span class="org">NVIDIA</span>
+            <span class="date">Issued Jan 2026</span>
+          </div>
+        </article>
+        <article class="cert">
+          <button class="cert-img" type="button" data-cert="nvidia-computer-vision.jpg" aria-label="View Computer Vision for Industrial Inspection certificate">
+            <img src="nvidia-computer-vision.jpg" alt="NVIDIA Computer Vision for Industrial Inspection certificate" loading="lazy">
+          </button>
+          <div class="cert-body">
+            <h3>Computer Vision for Industrial Inspection</h3>
+            <span class="org">NVIDIA</span>
+            <span class="date">Issued Jan 2026</span>
           </div>
         </article>
       </div>
@@ -527,6 +624,66 @@ footer .wrap { padding-block: 18px; display: flex; flex-wrap: wrap; justify-cont
   viewer.addEventListener("click", e => { if (e.target === viewer || e.target === pagesEl) closeResume(); });
   document.addEventListener("keydown", e => { if (e.key === "Escape" && !viewer.hidden) closeResume(); });
   if (location.hash === "#resume") openResume();
+
+  // Certificate images open in the same overlay
+  const viewerTitle = viewer.querySelector(".viewer-bar span");
+  document.querySelectorAll("[data-cert]").forEach(b => b.addEventListener("click", () => {
+    const img = b.querySelector("img");
+    pagesEl.innerHTML = "";
+    const big = document.createElement("img");
+    big.src = b.dataset.cert; big.alt = img.alt;
+    pagesEl.appendChild(big);
+    viewerTitle.textContent = b.closest(".cert").querySelector("h3").textContent;
+    rendered = false;
+    viewer.hidden = false;
+    document.body.style.overflow = "hidden";
+    document.getElementById("viewer-close").focus();
+  }));
+  // Photo slideshows: all advance together every 3.5s on one shared timer; arrows and dots to click through; click photo to enlarge
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const shows = [];
+  let tick = null;
+  function restartAll() {
+    clearInterval(tick);
+    if (!reduceMotion) tick = setInterval(() => shows.forEach(s => { if (!s.paused) s.show(s.i + 1); }), 3500);
+  }
+  document.querySelectorAll(".slideshow").forEach(ss => {
+    const imgs = [...ss.querySelectorAll(".slides img")];
+    const dots = ss.querySelector(".ss-dots");
+    const s = { i: 0, paused: false };
+    s.show = n => {
+      s.i = (n + imgs.length) % imgs.length;
+      imgs.forEach((im, k) => im.classList.toggle("on", k === s.i));
+      [...dots.children].forEach((d, k) => d.setAttribute("aria-current", k === s.i ? "true" : "false"));
+    };
+    imgs.forEach((_, n) => {
+      const d = document.createElement("button");
+      d.type = "button"; d.setAttribute("aria-label", "Show photo " + (n + 1));
+      d.addEventListener("click", () => { s.show(n); restartAll(); });
+      dots.appendChild(d);
+    });
+    ss.querySelector(".prev").addEventListener("click", () => { s.show(s.i - 1); restartAll(); });
+    ss.querySelector(".next").addEventListener("click", () => { s.show(s.i + 1); restartAll(); });
+    ss.addEventListener("mouseenter", () => { s.paused = true; });
+    ss.addEventListener("mouseleave", () => { s.paused = false; });
+    ss.querySelector(".slides").addEventListener("click", () => {
+      pagesEl.innerHTML = "";
+      const big = document.createElement("img");
+      big.src = imgs[s.i].src; big.alt = imgs[s.i].alt;
+      pagesEl.appendChild(big);
+      viewerTitle.textContent = ss.dataset.title;
+      rendered = false;
+      viewer.hidden = false;
+      document.body.style.overflow = "hidden";
+      document.getElementById("viewer-close").focus();
+    });
+    s.show(0);
+    shows.push(s);
+  });
+  restartAll();
+  document.querySelectorAll("[data-resume]").forEach(a => a.addEventListener("click", () => {
+    viewerTitle.textContent = "Noah Carter · Resume";
+  }));
 
   const btn = document.getElementById("copy-email");
   const label = document.getElementById("copy-label");
