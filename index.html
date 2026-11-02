@@ -358,6 +358,22 @@ footer { background: #1a1a1a; border-top: 6px solid var(--accent); color: var(--
 .hero::after { display: none; }
 .hero-photo { bottom: 16px; }
 @media (max-width: 680px) { .hero::before { background-position: 85% 100%; background-size: auto 80%; } }
+</style><style>
+/* Projects on black, Student Organizations on white */
+#projects { background: #1a1a1a; border-bottom: 0; }
+#projects .proj { border-color: #3a3a3a; }
+#clubs { background: #ffffff; color: var(--ink); border-bottom: 2px solid var(--hair); }
+#clubs .row { border-bottom-color: var(--hair); }
+#clubs .row-head h3, #clubs .job-title { color: var(--ink); }
+#clubs .org, #clubs .job-title .org { color: var(--ink-soft); }
+#clubs .date { color: var(--accent); }
+#clubs ul.dash li::before { color: var(--accent); }
+#clubs .mark { background: var(--accent) !important; border-color: var(--accent) !important; color: #fff; }
+</style><style>
+/* White page instead of beige */
+html:root:not(#x) { --bg: #ffffff; --panel: #f3f3f3; --hair: #e4e4e4; }
+body { background: #ffffff; }
+#experience .row { border-bottom-color: #d6d6d6; }
 </style>
 </head>
 <body>
@@ -439,7 +455,7 @@ footer { background: #1a1a1a; border-top: 6px solid var(--accent); color: var(--
                   <li>Redesigned the self-centering docking mechanism from a 4-motor to a 2-motor lead-screw system, cutting motor count 50% while maintaining alignment tolerance.</li>
                   <li>Engineered a contact-based charging system (pogo-pin drone legs, 4-plate copper pad, bridge rectifier) that resolves charging polarity across any landing orientation without added sensors.</li>
                   <li>Built and programmed an Arduino Uno state machine to coordinate landing detection, alignment, and charging across dual stepper motors and a pressure-sensor trigger, sourcing the full charging station prototype with a $300 budget.</li>
-                  <li>Manage a team of 3 fellows as Project Manager, running design reviews and weekly check-ins to keep the project on a 10-week schedule.</li>
+                  <li>Manage a team of fellows as Project Manager, running design reviews and weekly check-ins to keep the project on a 10-week schedule.</li>
                   <li>Currently broadening CAD skills by self-teaching CATIA V5 through <em>CATIA V5 for Designers</em>, 15th Edition.</li>
                 </ul>
                 <div class="slideshow" aria-roledescription="carousel" aria-label="Drone docking station diagrams" data-title="Drone Docking Station">
@@ -477,7 +493,7 @@ footer { background: #1a1a1a; border-top: 6px solid var(--accent); color: var(--
               <h3>Piedmont Mechanical, Inc.</h3>
               <span class="date">May 2026 – Aug 2026</span>
             </div>
-            <p class="job-title">Mechanical Engineering Intern <span class="org">· Spartanburg, SC</span></p>
+            <p class="job-title">Field Engineer and Project Management Intern <span class="org">· Spartanburg, SC</span></p>
             <div class="text-media role-media">
             <ul class="dash">
               <li>Conducted 10+ field site visits across 2 industrial/commercial HVAC projects, coordinating with project managers to resolve field issues and keep installs on schedule.</li>
@@ -593,11 +609,24 @@ footer { background: #1a1a1a; border-top: 6px solid var(--accent); color: var(--
               <span class="date">Aug 2025 – Present</span>
             </div>
             <span class="org">Columbia, SC</span>
+            <div class="text-media">
             <ul class="dash">
-              <li>P.A.T.H. Course Certification, a 12-week live, interactive training program designed to equip aspiring professionals with the technical, business, and customer-facing skills necessary to succeed as a sales engineer.</li>
-              <li>Competed in Nucor Sales Pitch competition selling to sales managers in Nucor.</li>
               <li>Placed 1st at the Microsoft Sales Competition.</li>
+              <li>Placed 1st in the Hoffman and Hoffman Sales Competition.</li>
+              <li>P.A.T.H. Course Certification: a 12-week live, interactive training program designed to equip aspiring professionals with the technical, business, and customer-facing skills necessary to succeed as a sales engineer.</li>
+              <li>Placed 2nd in the Nucor Sales competition.</li>
             </ul>
+            <div class="slideshow wide" aria-roledescription="carousel" aria-label="Carolina Sales Institute photos" data-title="Carolina Sales Institute">
+              <div class="slides">
+                <img class="on" src="csi-2.webp" alt="Carolina Sales Institute members and staff">
+                <img src="csi-3.png" alt="Noah with fellow Sales Institute students" loading="lazy">
+                <img class="fit" src="csi-1.png" alt="Noah and Sophie Davis holding 2nd place certificates for the Nucor Sales Competition" loading="lazy">
+                <img src="csi-4.png" alt="Sales competition winners with prizes" loading="lazy">
+              </div>
+              <button class="ss-btn prev" type="button" aria-label="Previous photo">‹</button>
+              <button class="ss-btn next" type="button" aria-label="Next photo">›</button>
+              <div class="ss-dots"></div>
+            </div>            </div>
           </div>
         </div>
 
